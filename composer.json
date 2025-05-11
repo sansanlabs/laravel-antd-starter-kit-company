@@ -1,11 +1,18 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
-  "name": "laravel/react-starter-kit",
+  "name": "sansanlabs/laravel-antd-starter-kit-company",
   "type": "project",
-  "description": "The skeleton application for the Laravel framework.",
+  "description": "A Laravel starter kit for company with Ant Design, Inertia, React, and TypeScript optimized for modern web development.",
   "keywords": [
     "laravel",
-    "framework"
+    "framework",
+    "antd",
+    "inertia",
+    "react",
+    "typescript",
+    "starter-kit",
+    "spa",
+    "vite"
   ],
   "license": "MIT",
   "require": {
