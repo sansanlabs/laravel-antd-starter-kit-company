@@ -3,49 +3,87 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Session;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Socialite\Facades\Socialite;
 
-class AuthenticatedSessionController extends Controller
-{
-    /**
-     * Show the login page.
-     */
-    public function create(Request $request): Response
-    {
-        return Inertia::render('auth/login', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => $request->session()->get('status'),
-        ]);
-    }
+class AuthenticatedSessionController extends Controller {
+  /**
+   * Show the login page.
+   */
+  public function index(): Response {
+    return inertia("auth/login/index");
+  }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+  /**
+   * Redirect to microsoft login page.
+   */
+  public function microsoftRedirect(Request $request): RedirectResponse {
+    return Socialite::driver("microsoft")
+      ->with(["prompt" => "select_account"])
+      ->redirect();
+  }
 
-        $request->session()->regenerate();
+  /**
+   * Callback after login
+   */
+  public function microsoftCallback(): RedirectResponse {
+    $user = Socialite::driver("microsoft")
+      ->scopes(["offline_access"])
+      ->user();
 
-        return redirect()->intended(route('dashboard', absolute: false));
-    }
+    $userData = [
+      "microsoft_id" => $user->getId(),
+      "name" => $user->getName(),
+      "email" => $user->getEmail(),
+    ];
 
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
+    $existingUser = User::where("email", $user->getEmail())->first();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    $loggedInUser = $existingUser ? tap($existingUser)->update($userData) : User::create($userData);
 
-        return redirect('/');
-    }
+    auth()->login($loggedInUser);
+
+    session([
+      "microsoft_access_token" => $user->token,
+      "microsoft_refresh_token" => $user->refreshToken,
+    ]);
+    session()->save();
+
+    $session = Session::find(session()->getId());
+    activity("sessions")
+      ->event("created")
+      ->by(auth()->user())
+      ->withProperties([
+        "attributes" => $session,
+      ])
+      ->log(":causer.name login");
+
+    return redirect()->intended(route("dashboard.index", absolute: false));
+  }
+
+  /**
+   * Destroy an authenticated session.
+   */
+  public function logout(Request $request): RedirectResponse {
+    $session = Session::find(session()->getId());
+
+    activity("sessions")
+      ->event("deleted")
+      ->by(auth()->user())
+      ->withProperties([
+        "old" => $session,
+      ])
+      ->log(":causer.name logout");
+
+    auth()->guard("web")->logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect("/");
+  }
 }
