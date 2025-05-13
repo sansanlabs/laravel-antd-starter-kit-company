@@ -43,7 +43,7 @@ export default function Show({ user }: ShowType) {
         can(permissions, "Users.Edit") && (
           <Link href={route("users.edit", { user: user.id })}>
             <Button type="primary" icon={<LuPencilLine />}>
-              {__(locale, "lang.edit_user")}
+              {__(locale, "lang.edit")}
             </Button>
           </Link>
         )
@@ -51,7 +51,7 @@ export default function Show({ user }: ShowType) {
     >
       <Flex vertical gap={16} style={{ maxWidth: "48rem" }}>
         <Flex justify="center">
-          <div style={{ borderRadius: 8, overflow: "hidden", height: 200 }}>
+          <div style={{ overflow: "hidden", height: 200 }}>
             <Image src={route("users.user-avatar", { user: user.id })} width={200} style={{ objectFit: "cover" }} />
           </div>
         </Flex>

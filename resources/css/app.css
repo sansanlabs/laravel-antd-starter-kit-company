@@ -38,12 +38,11 @@ body {
 
 /* antd dropdown */
 .ant-dropdown-menu {
-  padding: 1px !important;
+  padding: 0 !important;
 }
 .ant-dropdown-menu-item,
 .ant-dropdown-menu-submenu-title {
-  padding: 8px 10px !important;
-  border-radius: var(--ant-border-radius) !important;
+  padding: 9px 13px !important;
 }
 .ant-dropdown-menu-item-selected {
   color: var(--ant-color-white) !important;

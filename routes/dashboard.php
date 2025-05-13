@@ -8,7 +8,7 @@ use App\Http\Controllers\Dashboard\User\DeviceSessionController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Dashboard\UserActivityLogController;
 
-Route::prefix("dashboard")->middleware(["auth",])->group(function (): void {
+Route::prefix("dashboard")->middleware(["ms_auth", "auth"])->group(function (): void {
   // Dashboard
   Route::get("/", [DashboardController::class, "index"])->name("dashboard.index")->middleware("can:Dashboard.Index");
 

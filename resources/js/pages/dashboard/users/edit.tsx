@@ -1,3 +1,4 @@
+import InnerSidebarMenuUser from "@/components/inner-sidebar-menu-user";
 import AuthDashboardWrapper from "@/layouts/auth-dashboard-wrapper";
 import DashboardLayout from "@/layouts/dashboard-layout";
 import { __ } from "@/lib/utils";
@@ -34,6 +35,7 @@ export default function Edit({ user, roles }: EditType) {
           title: __(locale, "lang.edit"),
         },
       ]}
+      innerSidebarMenu={InnerSidebarMenuUser(user)}
     >
       <Flex vertical gap={16} style={{ maxWidth: "48rem" }}>
         <FormUser user={user} roles={roles} />

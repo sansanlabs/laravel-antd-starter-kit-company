@@ -148,13 +148,13 @@ export default function DashbordDropdownUser() {
                 },
                 {
                   key: "id",
-                  label: "Indonesian",
+                  label: "Bahasa Indonesia",
                   icon: <span style={{ fontFamily: "monospace" }}>ID</span>,
                 },
                 {
                   key: "ja",
-                  label: "Japanese",
-                  icon: <span style={{ fontFamily: "monospace" }}>JP</span>,
+                  label: "日本語",
+                  icon: <span style={{ fontFamily: "monospace" }}>JA</span>,
                 },
               ],
               onClick: ({ key }) => onChangeLanguage(key),
