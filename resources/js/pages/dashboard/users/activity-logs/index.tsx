@@ -1,9 +1,9 @@
 import Datatable from "@/components/datatable";
-import InnerSidebarMenuUser from "@/components/inner-sidebar-menu-user";
 import InputSearchDatatable from "@/components/input-search-datatable";
 import AuthDashboardWrapper from "@/layouts/auth-dashboard-wrapper";
 import DashboardLayout from "@/layouts/dashboard-layout";
 import { __ } from "@/lib/utils";
+import MenuUser from "@/pages/dashboard/users/partials/menu-user";
 import { ActivityLogType, QueryResultType, SharedData, UserType } from "@/types";
 import { usePage } from "@inertiajs/react";
 import { Button, Descriptions, DescriptionsProps, Dropdown, Modal, TableProps, Typography } from "antd";
@@ -213,7 +213,7 @@ export default function Index({ user, queryResult }: IndexType) {
           title: __(locale, "lang.activity_logs"),
         },
       ]}
-      innerSidebarMenu={InnerSidebarMenuUser(user)}
+      innerSidebarMenu={MenuUser(user)}
       innerSidebarActiveMenu="activity-logs"
       extra={
         <InputSearchDatatable queryResult={queryResult} route={route("users.activity-logs.index", { user: user.id })} />

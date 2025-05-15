@@ -1,7 +1,7 @@
-import InnerSidebarMenuUser from "@/components/inner-sidebar-menu-user";
 import AuthDashboardWrapper from "@/layouts/auth-dashboard-wrapper";
 import DashboardLayout from "@/layouts/dashboard-layout";
 import { __ } from "@/lib/utils";
+import MenuUser from "@/pages/dashboard/users/partials/menu-user";
 import { RoleType, SharedData, UserType } from "@/types";
 import { usePage } from "@inertiajs/react";
 import { Flex } from "antd";
@@ -35,7 +35,7 @@ export default function Edit({ user, roles }: EditType) {
           title: __(locale, "lang.edit"),
         },
       ]}
-      innerSidebarMenu={InnerSidebarMenuUser(user)}
+      innerSidebarMenu={MenuUser(user)}
     >
       <Flex vertical gap={16} style={{ maxWidth: "48rem" }}>
         <FormUser user={user} roles={roles} />

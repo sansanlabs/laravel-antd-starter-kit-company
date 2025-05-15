@@ -4,7 +4,7 @@ import { SharedData, UserType } from "@/types";
 import { Link, usePage } from "@inertiajs/react";
 import { LuHistory, LuListMinus, LuMonitorSmartphone } from "react-icons/lu";
 
-export default function InnerSidebarMenuUser(user: UserType) {
+export default function MenuUser(user: UserType) {
   const {
     auth: { user: authUser },
     locale,

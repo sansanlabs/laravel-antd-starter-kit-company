@@ -1,8 +1,8 @@
-import InnerSidebarMenuUser from "@/components/inner-sidebar-menu-user";
 import AuthDashboardWrapper from "@/layouts/auth-dashboard-wrapper";
 import DashboardLayout from "@/layouts/dashboard-layout";
 import { can } from "@/lib/permissions";
 import { __ } from "@/lib/utils";
+import MenuUser from "@/pages/dashboard/users/partials/menu-user";
 import { RoleType, SharedData, UserType } from "@/types";
 import { Link, usePage } from "@inertiajs/react";
 import { Button, Descriptions, Flex, Image, Tag, Typography } from "antd";
@@ -37,7 +37,7 @@ export default function Show({ user }: ShowType) {
           title: __(locale, "lang.detail"),
         },
       ]}
-      innerSidebarMenu={InnerSidebarMenuUser(user)}
+      innerSidebarMenu={MenuUser(user)}
       innerSidebarActiveMenu="detail"
       extra={
         can(permissions, "Users.Edit") && (

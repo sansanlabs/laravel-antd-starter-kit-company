@@ -1,10 +1,10 @@
 import Datatable from "@/components/datatable";
-import InnerSidebarMenuUser from "@/components/inner-sidebar-menu-user";
 import InputSearchDatatable from "@/components/input-search-datatable";
 import AuthDashboardWrapper from "@/layouts/auth-dashboard-wrapper";
 import DashboardLayout from "@/layouts/dashboard-layout";
 import { can } from "@/lib/permissions";
 import { __, getDefaultSortOrder } from "@/lib/utils";
+import MenuUser from "@/pages/dashboard/users/partials/menu-user";
 import { ActivityLogType, QueryResultType, SessionType, SharedData, UserType } from "@/types";
 import { router, usePage } from "@inertiajs/react";
 import { App, Button, Dropdown, TableProps, Tag, Typography } from "antd";
@@ -170,7 +170,7 @@ export default function Index({ user, queryResult, sessionId }: IndexType) {
           title: __(locale, "lang.device_sessions"),
         },
       ]}
-      innerSidebarMenu={InnerSidebarMenuUser(user)}
+      innerSidebarMenu={MenuUser(user)}
       innerSidebarActiveMenu="device-sessions"
       extra={
         <>
