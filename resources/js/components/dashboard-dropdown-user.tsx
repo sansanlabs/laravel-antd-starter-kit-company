@@ -2,8 +2,8 @@ import useLocale from "@/hooks/use-locale";
 import { __ } from "@/lib/utils";
 import { SharedData } from "@/types";
 import { Link, router, usePage } from "@inertiajs/react";
-import { App, Avatar, Button, Divider, Dropdown, Flex, Typography } from "antd";
-import { ThemeMode, useThemeMode } from "antd-style";
+import { App, Avatar, Button, Dropdown, Flex, Typography } from "antd";
+import { ThemeMode, useTheme, useThemeMode } from "antd-style";
 import {
   LuChevronsUpDown,
   LuLanguages,
@@ -23,6 +23,7 @@ export default function DashbordDropdownUser() {
   const { modal, message } = App.useApp();
   const { themeMode, setThemeMode } = useThemeMode();
   const { setLocale } = useLocale();
+  const { colorBgElevated } = useTheme();
 
   const onLogout = () => {
     const modalConfirm = modal.confirm({
@@ -104,7 +105,7 @@ export default function DashbordDropdownUser() {
   };
 
   return (
-    <div style={{ margin: 0, height: 66 }}>
+    <div style={{ margin: 0, padding: 0, height: 66 }}>
       <Dropdown
         trigger={["click"]}
         menu={{
@@ -115,20 +116,16 @@ export default function DashbordDropdownUser() {
             {
               key: "detail",
               label: (
-                <div style={{ padding: "5px 4px", cursor: "default" }}>
-                  <Flex vertical>
-                    <Detail />
-
-                    <Divider style={{ marginBlock: 14 }} />
-
-                    <a href={route("microsoft.redirect")}>
-                      <Button type="dashed" block>
-                        {__(locale, "lang.login_with_a_different_account")}
-                      </Button>
-                    </a>
-                  </Flex>
-                </div>
+                <Flex vertical gap={8}>
+                  <Detail />
+                  <a href={route("microsoft.redirect")} style={{ paddingInline: 1 }}>
+                    <Button type="dashed" block>
+                      {__(locale, "lang.login_with_a_different_account")}
+                    </Button>
+                  </a>
+                </Flex>
               ),
+              style: { background: colorBgElevated, padding: "12px 13px 14px 13px", cursor: "default" },
             },
             { type: "divider" },
             {
@@ -193,7 +190,7 @@ export default function DashbordDropdownUser() {
           ],
         }}
       >
-        <Button type="text" style={{ height: "100%", width: "100%", paddingInline: 12 }}>
+        <Button type="text" block style={{ height: "100%", paddingInline: 12 }}>
           <Flex align="center" justify="space-between" style={{ width: "100%" }} gap="small">
             <Detail />
             <LuChevronsUpDown size={16} />

@@ -129,19 +129,34 @@ export default function DashboardLayout({
                 minHeight: 48,
               }}
             >
-              <Typography.Title level={4} style={{ margin: 0 }}>
+              <Typography.Title
+                level={4}
+                style={{
+                  margin: 0,
+                }}
+              >
                 {title}
               </Typography.Title>
               <Flex gap="small">{extra}</Flex>
             </Flex>
 
-            <Flex gap={16} vertical={mobile} flex={1} style={{ paddingInline: 16, paddingBottom: 16 }}>
+            <Flex vertical={mobile} flex={1}>
               <DashboardInnerSidebar
                 innerSidebarMenu={innerSidebarMenu}
                 innerSidebarActiveMenu={innerSidebarActiveMenu}
               />
 
-              <Flex flex={1} vertical gap={16} style={{ width: "100%", overflow: "hidden" }}>
+              <Flex
+                flex={1}
+                vertical
+                gap={16}
+                style={{
+                  width: "100%",
+                  overflow: "auto",
+                  paddingInline: 16,
+                  paddingBottom: 16,
+                }}
+              >
                 {children}
               </Flex>
             </Flex>

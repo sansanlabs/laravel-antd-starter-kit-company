@@ -30,6 +30,8 @@ export default function DashboardInnerSidebar({
             zIndex: 20,
             display: "flex",
             overflow: "auto",
+            paddingInline: 16,
+            marginBottom: 16,
           }}
         >
           <Dropdown
@@ -50,11 +52,11 @@ export default function DashboardInnerSidebar({
         <div
           style={{
             minHeight: 0,
-            height: `${innerSidebarMenu.length * 40}px`,
             position: "sticky",
             top: 83,
             display: "flex",
             overflow: "auto",
+            // paddingLeft: 16,
           }}
         >
           <Menu

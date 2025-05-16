@@ -40,10 +40,6 @@ body {
 .ant-dropdown-menu {
   padding: 0 !important;
 }
-.ant-dropdown-menu-item,
-.ant-dropdown-menu-submenu-title {
-  padding: 9px 13px !important;
-}
 .ant-dropdown-menu-item-selected {
   color: var(--ant-color-white) !important;
   background-color: var(--ant-color-primary) !important;
@@ -83,4 +79,9 @@ body {
 .ant-pagination-item-active > a {
   color: var(--ant-color-white);
   transition: none !important;
+}
+
+/* antd select */
+.ant-select-dropdown {
+  padding: 0 !important;
 }
