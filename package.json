@@ -11,13 +11,13 @@
     "types": "tsc --noEmit"
   },
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
+    "@eslint/js": "^9.27.0",
     "@prettier/plugin-php": "^0.22.4",
     "@shufo/prettier-plugin-blade": "^1.15.3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/js-cookie": "^3.0.6",
-    "@types/node": "^22.15.18",
-    "eslint": "^9.26.0",
+    "@types/node": "^22.15.19",
+    "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@inertiajs/react": "^2.0.10",
+    "@inertiajs/react": "^2.0.11",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react": "^4.4.1",
@@ -45,7 +45,7 @@
     "zustand": "^5.0.4"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.40.2",
+    "@rollup/rollup-linux-x64-gnu": "4.41.0",
     "lightningcss-linux-x64-gnu": "^1.30.1"
   }
 }
