@@ -56,7 +56,6 @@ export default function DashboardInnerSidebar({
             top: 83,
             display: "flex",
             overflow: "auto",
-            // paddingLeft: 16,
           }}
         >
           <Menu
@@ -64,7 +63,7 @@ export default function DashboardInnerSidebar({
             defaultSelectedKeys={[innerSidebarActiveMenu]}
             items={innerSidebarMenu}
             style={{
-              width: 230,
+              width: 250,
               border: "none",
             }}
           />
