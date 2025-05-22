@@ -52,7 +52,7 @@ export default function Show({ user }: ShowType) {
       <Flex vertical gap={16} style={{ maxWidth: "48rem" }}>
         <Flex justify="center">
           <div style={{ overflow: "hidden", height: 200 }}>
-            <Image src={route("users.user-avatar", { user: user.id })} width={200} style={{ objectFit: "cover" }} />
+            <Image src={route("users.photo", { user: user.id })} width={200} style={{ objectFit: "cover" }} />
           </div>
         </Flex>
         <Descriptions

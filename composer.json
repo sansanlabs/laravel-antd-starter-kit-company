@@ -18,11 +18,11 @@
   "require": {
     "php": "^8.2",
     "inertiajs/inertia-laravel": "^2.0.2",
-    "laravel/framework": "^12.14.1",
+    "laravel/framework": "^12.15.0",
     "laravel/socialite": "^5.20",
     "laravel/telescope": "^5.7",
     "laravel/tinker": "^2.10.1",
-    "sansanlabs/laravel-microsoft-graph": "^1.0.2",
+    "microsoft/microsoft-graph": "^2.35",
     "sansanlabs/laravel-userstamps": "^4.2",
     "socialiteproviders/microsoft": "^4.6",
     "spatie/laravel-activitylog": "^4.10.1",
@@ -95,7 +95,8 @@
     "sort-packages": true,
     "allow-plugins": {
       "pestphp/pest-plugin": true,
-      "php-http/discovery": true
+      "php-http/discovery": true,
+      "tbachert/spi": true
     }
   },
   "minimum-stability": "stable",

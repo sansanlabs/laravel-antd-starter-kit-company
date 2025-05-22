@@ -83,7 +83,7 @@ export default function DashbordDropdownUser() {
   const Detail = () => {
     return (
       <Flex flex={1} gap="small" align="center" style={{ minWidth: 0 }}>
-        <Avatar shape="square" size="large" src={route("users.auth-avatar")} />
+        <Avatar shape="square" size="large" src={route("users.photo", { user: authUser.id, dimension: "48x48" })} />
         <Flex vertical flex={1} style={{ minWidth: 0 }}>
           <Typography.Text strong style={{ textAlign: "start" }}>
             {authUser.name}

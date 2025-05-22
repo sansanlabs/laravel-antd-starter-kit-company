@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\User;
 
+use App\Facades\MicrosoftGraph;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
@@ -9,7 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Response;
-use SanSanLabs\MicrosoftGraph\Facades\MicrosoftGraph;
 
 class UserController extends Controller {
   public function index(Request $request): Response {
@@ -87,23 +87,19 @@ class UserController extends Controller {
     }
   }
 
-  public function authAvatar(User $user): mixed {
-    $user = auth()->user();
-    try {
-      return MicrosoftGraph::getMyPhoto();
-    } catch (\Throwable $th) {
-      report($th);
-      $fallbackUrl = "https://ui-avatars.com/api/?name={$user->name}&background=random";
-      return response()->redirectTo($fallbackUrl);
-    }
-  }
+  public function photo(User $user, Request $request): mixed {
+    $allowed = ["48x48", "64x64", "96x96", "120x120", "240x240", "360x360", "432x432", "504x504", "648x648"];
+    $dimension = in_array($request->query("dimension"), $allowed) ? $request->query("dimension") : null;
 
-  public function userAvatar(User $user): mixed {
     try {
-      return MicrosoftGraph::getUserPhoto($user->microsoft_id);
-    } catch (\Throwable $th) {
-      $fallbackUrl = "https://ui-avatars.com/api/?name={$user->name}&background=random";
-      return response()->redirectTo($fallbackUrl);
+      $photo = $dimension
+        ? MicrosoftGraph::users()->byUserId($user->microsoft_id)->photos()->byProfilePhotoId($dimension)->content()->get()->wait()
+        : MicrosoftGraph::users()->byUserId($user->microsoft_id)->photo()->content()->get()->wait();
+
+      $mime = (new \finfo(FILEINFO_MIME_TYPE))->buffer($photo) ?: "image/jpeg";
+      return response($photo)->header("Content-Type", $mime);
+    } catch (\Throwable) {
+      return redirect("https://ui-avatars.com/api/?name={$user->name}&background=random");
     }
   }
 }

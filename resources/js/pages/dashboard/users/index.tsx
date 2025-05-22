@@ -7,8 +7,8 @@ import { can, canAny } from "@/lib/permissions";
 import { __, getDefaultSortOrder } from "@/lib/utils";
 import { QueryResultType, RoleType, SharedData } from "@/types";
 import { Link, usePage } from "@inertiajs/react";
-import { Button, Dropdown, Flex, Image, MenuProps, TableProps, Tag, Typography } from "antd";
-import { LuChevronDown, LuEye, LuHistory, LuListMinus, LuMonitorSmartphone, LuPencilLine } from "react-icons/lu";
+import { Avatar, Button, Dropdown, MenuProps, TableProps, Tag, Typography } from "antd";
+import { LuChevronDown, LuHistory, LuListMinus, LuMonitorSmartphone, LuPencilLine } from "react-icons/lu";
 
 type IndexType = {
   queryResult: QueryResultType;
@@ -26,21 +26,9 @@ export default function Index({ queryResult }: IndexType) {
       dataIndex: "id",
       align: "center",
       width: 1,
-      render: (id: string) => {
-        return (
-          <Flex justify="center" align="center" style={{ width: "100%", height: 10 }}>
-            <Flex justify="center" align="center" style={{ overflow: "hidden" }}>
-              <Image
-                src={route("users.user-avatar", { user: id })}
-                width={40}
-                preview={{
-                  mask: <LuEye />,
-                }}
-              />
-            </Flex>
-          </Flex>
-        );
-      },
+      render: (id: string) => (
+        <Avatar shape="square" size="large" src={route("users.photo", { user: id, dimension: "48x48" })} />
+      ),
     },
     {
       title: __(locale, "lang.name"),

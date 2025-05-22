@@ -163,7 +163,6 @@ export default function FormRole({ role, permissions, selectedCollapseIds }: For
               showHeader={false}
               rowSelection={{
                 onSelect: (record, selected, selectedRows) => {
-                  console.log(selectedRows);
                   const selectedPermission = selectedRows.filter((r) => "id" in r && r.id).map((r) => r.name);
                   setSelectedPermissions(selectedPermission);
                 },

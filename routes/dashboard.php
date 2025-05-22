@@ -14,12 +14,11 @@ Route::prefix("dashboard")->middleware(["ms_auth", "auth"])->group(function (): 
 
   // Users
   Route::prefix("users")->group(function (): void {
-    Route::get( "/",                   [UserController::class, "index"     ])->name("users.index"      )->middleware("can:Users.Index"        );
-    Route::get( "/auth-avatar",        [UserController::class, "authAvatar"])->name("users.auth-avatar");
-    Route::get( "/{user}/show",        [UserController::class, "show"      ])->name("users.show"       );
-    Route::get( "/{user}/edit",        [UserController::class, "edit"      ])->name("users.edit"       )->middleware("can:Users.Edit"         );
-    Route::put( "/{user}/update",      [UserController::class, "update"    ])->name("users.update"     )->middleware("can:Users.Edit"         );
-    Route::get( "/{user}/user-avatar", [UserController::class, "userAvatar"])->name("users.user-avatar");
+    Route::get( "/",              [UserController::class, "index" ])->name("users.index" )->middleware("can:Users.Index");
+    Route::get( "/{user}/photo",  [UserController::class, "photo" ])->name("users.photo" );
+    Route::get( "/{user}/show",   [UserController::class, "show"  ])->name("users.show"  );
+    Route::get( "/{user}/edit",   [UserController::class, "edit"  ])->name("users.edit"  )->middleware("can:Users.Edit" );
+    Route::put( "/{user}/update", [UserController::class, "update"])->name("users.update")->middleware("can:Users.Edit" );
 
     // Activity Logs
     Route::prefix("{user}/activity-logs")->group(function (): void {
